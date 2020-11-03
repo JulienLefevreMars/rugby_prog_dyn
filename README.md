@@ -24,6 +24,12 @@ In parallel it suggests to find a solution of the previous equation on the form 
 ## Without ordering
 
 In a second attempt, it is possible to find *C(n)* by enumerating the set *{ (a,b,c) / 3a + 5b + 7c = n}*.
+For instance, for *C(20)*, we enumerate starting from the converted tries then only the tries and so on
+* 20 = 2 * 7 + 2 * 3 
+* 20 = 1 * 7 + 2 * 5 + 1 * 3
+* 20 = 4 * 5
+* 20 = 1 * 5 + 5 * 3
+
 
 
 

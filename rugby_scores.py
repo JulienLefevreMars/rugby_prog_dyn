@@ -3,12 +3,11 @@ import sys
 from scipy.stats import linregress
 import matplotlib.pyplot as plt
 
-def number_one_score(n):
+def number_one_score_w_order(n,additioners = [3, 5, 7]):
 	# Computes the number of ways to obtain n points, given the rugby rules:
 	# 3 pts for a penalty, 5 pts for a try and 7 pts for a transformed try
 	scores = numpy.zeros((n+1,))
 	scores[0] = 1
-	additioners = [3, 5, 7]
 	#for a in additioners:
 	#	scores[a] = 1
 	# number k: k = (k-a) + a 
@@ -19,6 +18,24 @@ def number_one_score(n):
 				scores[k] = scores[k] + scores[k-a] 
 	return scores
 	
+	
+def number_one_score_wo_order(n):
+	scores = numpy.zeros((n+1,))
+	for i in range(n+1)
+		scores[i] = number_one_score_wo_order_aux(n)
+		
+	
+def number_one_score_wo_order_aux(n):
+	# Naive method in O(n^3)
+	score = 0
+	for i in range(n/7):
+		for j in range(n/5):
+			for k in range(n/3):
+				if (i*7 + 5*j + 3*k ==n):
+					score+=1
+	return score
+					 
+
 	
 def newton(x0,iterations,f,df):
 	# Newton method, y= f(x) + hf'(x), vanishes when y = 0, h = - f(x)/f'(x)
@@ -35,7 +52,7 @@ def polynomial_rugby(deriv=True):
 
 if __name__ == '__main__':
 	n = int(sys.argv[1])
-	scores = number_one_score(n)
+	scores = number_one_score_w_order(n)
 	#print(scores)
 	
 	plt.plot(scores)
