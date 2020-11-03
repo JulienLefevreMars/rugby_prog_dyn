@@ -21,5 +21,9 @@ This can be obtained through dynamic programming and the recursive formula:
 If one wants to find the asymptotic behavior of *A(n)* one can fit the evolution of *log A(n)* w.r.t *n* that follows approximately a line. 
 In parallel it suggests to find a solution of the previous equation on the form *A(n) = r^n* which leads to find a root of the polynomial *X⁷-X⁴-X²-1*
 
+## Without ordering
+
+In a second attempt, it is possible to find *C(n)* by enumerating the set *{ (a,b,c) / 3a + 5b + 7c = n}*.
+
 
 
