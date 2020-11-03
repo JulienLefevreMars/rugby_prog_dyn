@@ -21,20 +21,20 @@ def number_one_score_w_order(n,additioners = [3, 5, 7]):
 	
 def number_one_score_wo_order(n):
 	scores = numpy.zeros((n+1,))
-	for i in range(n+1)
-		scores[i] = number_one_score_wo_order_aux(n)
-		
+	for i in range(n+1):
+		scores[i] = number_one_score_wo_order_aux(i)
+	return scores
+	
 	
 def number_one_score_wo_order_aux(n):
 	# Naive method in O(n^3)
 	score = 0
-	for i in range(n/7):
-		for j in range(n/5):
-			for k in range(n/3):
+	for i in range(int(n/7)+1):
+		for j in range(int(n/5)+1):
+			for k in range(int(n/3)+1):
 				if (i*7 + 5*j + 3*k ==n):
 					score+=1
-	return score
-					 
+	return score					 
 
 	
 def newton(x0,iterations,f,df):
@@ -56,14 +56,14 @@ if __name__ == '__main__':
 	#print(scores)
 	
 	plt.plot(scores)
-	plt.show()
 	plt.xlabel("Score")
 	plt.ylabel("Number of possibilities")
+	plt.show()
 	
 	plt.semilogy(scores)
-	plt.show()
 	plt.xlabel("Score")
 	plt.ylabel("Number of possibilities (Log)")
+	plt.show()
 	
 	# scores[k] behaves like r^k with r>1
 	# How to find r ?
@@ -87,3 +87,13 @@ if __name__ == '__main__':
 	params = linregress(x,y)
 	print("Empirical solution for a linear regression")
 	print(numpy.exp(params[0]))
+	
+	# Without ordering
+	
+	scores = number_one_score_wo_order(n)
+	print(scores)
+	plt.plot(scores)
+	plt.xlabel("Score")
+	plt.ylabel("Number of possibilities without ordering")
+	plt.show()
+	

@@ -29,6 +29,12 @@ For instance, for *C(20)*, we enumerate starting from the converted tries then o
 * 20 = 1 * 7 + 2 * 5 + 1 * 3
 * 20 = 4 * 5
 * 20 = 1 * 5 + 5 * 3
+I can be done with three nested loops, at the cost of *O(n⁴)* computation. 
+
+It suggest also a recursive formula *C(n,list[1:k]) = C(n,list[1:k-1]) + C(n-list[k],list[1:k])*, see here
+https://medium.com/@bharatkulratan/coin-change-problem-57ea55fade76
+
+
 
 
 
