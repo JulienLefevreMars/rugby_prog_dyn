@@ -1,6 +1,7 @@
 import numpy
 import sys
-from scipy.stats import linregress
+from scipy.stats import linregress 
+from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
 def number_one_score_w_order(n,additioners = [3, 5, 7]):
@@ -49,6 +50,11 @@ def polynomial_rugby(deriv=True):
 	if deriv:
 		return lambda x: x**7-x**4-x**2-1
 	return lambda x : 7*x**6-4*x**3-2*x
+	
+
+def power_law(x,a,b,c):
+	return (x+a)**b 
+	
 
 if __name__ == '__main__':
 	n = int(sys.argv[1])
@@ -81,10 +87,10 @@ if __name__ == '__main__':
 	# Method 2: empiric with a linear regression applied to x,log(y)
 	# log(y) = ax+b => y = (e^b)*(e^a)^x
 	Nstart=5
-	x = numpy.array([i for i in range(Nstart,n+1)])
+	x = numpy.array([i for i in range(0,n+1)])
 	y = numpy.log(scores[Nstart:])
 	
-	params = linregress(x,y)
+	params = linregress(x[Nstart:],y)
 	print("Empirical solution for a linear regression")
 	print(numpy.exp(params[0]))
 	
@@ -96,4 +102,10 @@ if __name__ == '__main__':
 	plt.xlabel("Score")
 	plt.ylabel("Number of possibilities without ordering")
 	plt.show()
+	
+	# Fit by a power law 
+	# y = (x+a)^b + c 
+	Nstart=200
+	params = curve_fit(power_law, x[Nstart:], scores[Nstart:])
+	print(params)
 	
